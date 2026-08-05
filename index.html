@@ -54,16 +54,27 @@
 
         <!-- Dekorativní indikátor rozpracovaného webu. Jednotlivá kladívka vloží JavaScript. -->
         <div class="construction-status" aria-label="Web se připravuje">
-          <div
-            class="hammer-spinner"
-            id="hammerSpinner"
-            aria-hidden="true"
-          ></div>
-
+          <div class="build-visual" aria-hidden="true">
+            <div class="hammer-assembly">
+              <div class="hammer">
+                <span class="hammer-head"></span>
+                <span class="hammer-handle"></span>
+              </div>
+            </div>
+        
+            <div class="bitcoin-block">
+              <div class="block-top-line">block #000839201</div>
+              <div class="block-center">₿</div>
+              <div class="block-bottom-line">00000000000000000004f2a</div>
+            </div>
+        
+            <span class="impact-mark impact-mark-left"></span>
+            <span class="impact-mark impact-mark-right"></span>
+          </div>
+        
           <p class="construction-title">WEB SE PŘIPRAVUJE</p>
           <p class="construction-subtitle">deploying &lt;bytkojn/&gt;</p>
         </div>
-      </div>
 
     </section>
   </main>
