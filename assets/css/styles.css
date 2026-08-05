@@ -7,7 +7,6 @@
   --bitcoin-orange: #f7931a;
   --bitcoin-orange-light: #ffb14a;
   --background: #08090b;
-  --panel: #111418;
   --line: #2a2f35;
   --text: #f4f1e9;
   --text-soft: #c4c7ca;
@@ -25,10 +24,6 @@
     monospace;
 }
 
-/* ------------------------------------------------------------------------
-   ZÁKLAD
-   ------------------------------------------------------------------------ */
-
 * {
   box-sizing: border-box;
 }
@@ -41,10 +36,8 @@ body {
   min-height: 100vh;
   margin: 0;
   overflow-x: hidden;
-
   color: var(--text);
   background: var(--background);
-
   font-family: var(--font-mono);
 }
 
@@ -62,18 +55,9 @@ body {
   inset: 0;
   z-index: -2;
   pointer-events: none;
-
   background-image:
-    linear-gradient(
-      rgba(255, 255, 255, 0.025) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      90deg,
-      rgba(255, 255, 255, 0.025) 1px,
-      transparent 1px
-    );
-
+    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
   background-size: 32px 32px;
   mask-image: linear-gradient(to bottom, black, transparent 92%);
 }
@@ -84,18 +68,9 @@ body::before {
   inset: 0;
   z-index: -1;
   pointer-events: none;
-
   background:
-    radial-gradient(
-      circle at 84% 12%,
-      rgba(247, 147, 26, 0.10),
-      transparent 28%
-    ),
-    radial-gradient(
-      circle at 8% 92%,
-      rgba(247, 147, 26, 0.05),
-      transparent 30%
-    );
+    radial-gradient(circle at 84% 12%, rgba(247, 147, 26, 0.10), transparent 28%),
+    radial-gradient(circle at 8% 92%, rgba(247, 147, 26, 0.05), transparent 30%);
 }
 
 /* ------------------------------------------------------------------------
@@ -109,22 +84,13 @@ body::before {
 
 .coming-soon-panel {
   min-height: calc(100vh - 32px);
-
   display: grid;
   grid-template-rows: 43px minmax(0, 1fr);
-
   overflow: hidden;
-
   border: 1px solid var(--line);
   border-radius: var(--radius);
-
   background:
-    linear-gradient(
-      145deg,
-      rgba(20, 23, 27, 0.89),
-      rgba(10, 12, 15, 0.96)
-    );
-
+    linear-gradient(145deg, rgba(20, 23, 27, 0.89), rgba(10, 12, 15, 0.96));
   box-shadow: 0 24px 80px rgba(0, 0, 0, 0.42);
 }
 
@@ -134,18 +100,14 @@ body::before {
 
 .terminal-bar {
   min-width: 0;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 24px;
-
   padding: 0 18px;
   border-bottom: 1px solid var(--line);
-
   color: var(--muted);
   background: rgba(0, 0, 0, 0.24);
-
   font-size: 11px;
 }
 
@@ -167,9 +129,7 @@ body::before {
   align-items: center;
   gap: 9px;
   flex: 0 0 auto;
-
   white-space: nowrap;
-
   font-size: 11px;
   font-weight: 700;
 }
@@ -192,25 +152,18 @@ body::before {
 .coming-soon-content {
   min-width: 0;
   min-height: 0;
-
   display: grid;
   place-items: center;
-
-  padding:
-    clamp(38px, 5vh, 68px)
-    clamp(22px, 4vw, 64px);
+  padding: clamp(38px, 5vh, 68px) clamp(22px, 4vw, 64px);
 }
 
 .coming-soon-stage {
   width: min(1500px, 100%);
-
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
   gap: clamp(44px, 5.5vh, 68px);
-
   text-align: center;
 }
 
@@ -220,19 +173,15 @@ body::before {
 
 .hero-copy {
   width: 100%;
-
   display: flex;
   flex-direction: column;
   align-items: center;
-
   text-align: center;
 }
 
 .hero-kicker {
   margin: 0 0 18px;
-
   color: var(--bitcoin-orange);
-
   text-align: center;
   font-size: 11px;
   font-weight: 800;
@@ -242,12 +191,9 @@ body::before {
 .hero-copy h1 {
   width: 100%;
   margin: 0;
-
   color: var(--text);
-
   text-align: center;
   text-transform: uppercase;
-
   font-size: clamp(46px, 6.25vw, 102px);
   line-height: 0.92;
   letter-spacing: -0.075em;
@@ -263,18 +209,13 @@ body::before {
   width: 100%;
   min-height: 1.08em;
   margin-top: 0.12em;
-
   color: var(--bitcoin-orange);
 }
 
 .rotating-word {
   display: inline-block;
-
   color: var(--bitcoin-orange);
-
-  transition:
-    opacity 220ms ease,
-    transform 220ms ease;
+  transition: opacity 220ms ease, transform 220ms ease;
 }
 
 .rotating-word.is-changing {
@@ -285,306 +226,198 @@ body::before {
 .rotating-word::after {
   content: "_";
   display: inline-block;
-
   color: var(--bitcoin-orange);
-
   animation: terminal-cursor-blink 1s step-end infinite;
 }
 
 /* ------------------------------------------------------------------------
-   STAVEBNÍ GRAFIKA
+   BLOK „PROGRAMOVÁNÍ“
    ------------------------------------------------------------------------ */
 
 .construction-status {
   display: flex;
   flex-direction: column;
   align-items: center;
-
   text-align: center;
 }
 
 .build-scene {
-  position: relative;
-
-  width: 390px;
+  width: 420px;
   max-width: 84vw;
-  height: 240px;
-
   margin-bottom: 22px;
 }
 
-/* ------------------------------------------------------------------------
-   BITCOINOVÝ BLOK
-   ------------------------------------------------------------------------ */
-
 .bitcoin-block {
-  position: absolute;
-  left: 50%;
-  bottom: 0;
-
-  width: 310px;
-  max-width: 78vw;
-  min-height: 132px;
-
-  display: grid;
-  align-content: center;
-  justify-items: center;
-
-  padding: 15px 20px 17px;
-
+  position: relative;
+  width: 100%;
+  min-height: 280px;
+  padding: 18px 18px 20px;
   overflow: hidden;
-
   border: 2px solid rgba(247, 147, 26, 0.72);
   border-radius: var(--radius);
-
   background:
-    linear-gradient(
-      rgba(255, 255, 255, 0.03) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      90deg,
-      rgba(255, 255, 255, 0.03) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      145deg,
-      rgba(25, 29, 34, 0.99),
-      rgba(8, 10, 13, 0.99)
-    );
-
-  background-size:
-    22px 22px,
-    22px 22px,
-    auto;
-
-  transform: translateX(-50%);
-
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(145deg, rgba(25, 29, 34, 0.99), rgba(8, 10, 13, 0.99));
+  background-size: 22px 22px, 22px 22px, auto;
   box-shadow:
     0 22px 55px rgba(0, 0, 0, 0.48),
     0 0 34px rgba(247, 147, 26, 0.10),
     inset 0 0 0 1px rgba(255, 255, 255, 0.02);
-
-  animation: block-impact 1.55s ease-in-out infinite;
+  animation: block-glow 2.8s ease-in-out infinite;
 }
 
 .bitcoin-block::before {
   content: "";
   position: absolute;
   inset: 0;
-
   pointer-events: none;
-
   background:
     linear-gradient(
       115deg,
       transparent 26%,
-      rgba(247, 147, 26, 0.09) 49%,
+      rgba(247, 147, 26, 0.08) 49%,
       transparent 72%
     );
-
   transform: translateX(-125%);
-
-  animation: block-scan 4.5s linear infinite;
+  animation: block-scan 4.8s linear infinite;
 }
 
-.block-top-line,
-.block-bottom-line {
+.block-header,
+.block-grid,
+.block-code,
+.block-progress {
   position: relative;
   z-index: 1;
-
-  max-width: 100%;
-
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-
-  color: var(--muted);
-
-  font-size: 10px;
-  line-height: 1.3;
-  letter-spacing: 0.08em;
 }
 
-.block-top-line {
+.block-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(247, 147, 26, 0.22);
+}
+
+.block-header-title {
   color: var(--bitcoin-orange-light);
+  font-size: 12px;
   font-weight: 800;
+  letter-spacing: 0.1em;
 }
 
-.block-center {
-  position: relative;
-  z-index: 1;
+.block-led {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--bitcoin-orange);
+  box-shadow: 0 0 10px rgba(247, 147, 26, 0.65);
+  animation: led-pulse 1.2s ease-in-out infinite;
+}
 
-  margin: 5px 0 4px;
+.block-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 14px;
+  margin-bottom: 16px;
+}
 
+.block-row {
+  display: grid;
+  gap: 4px;
+  padding: 10px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.015);
+}
+
+.block-row-wide {
+  grid-column: 1 / -1;
+}
+
+.row-label {
+  color: var(--muted);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+}
+
+.row-value {
+  color: var(--text);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.row-value-hash {
+  color: var(--bitcoin-orange-light);
+  font-size: 13px;
+}
+
+.block-code {
+  display: grid;
+  gap: 6px;
+  margin-bottom: 14px;
+  padding: 12px;
+  border: 1px solid rgba(247, 147, 26, 0.16);
+  background: rgba(0, 0, 0, 0.20);
+  text-align: left;
+}
+
+.code-label {
+  color: var(--muted);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.code-stream {
   color: var(--bitcoin-orange);
-
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 68px;
-  font-weight: 900;
-  line-height: 1;
-
-  text-shadow:
-    0 0 20px rgba(247, 147, 26, 0.24);
-
-  transform: rotate(12deg);
+  font-size: 13px;
+  line-height: 1.45;
+  word-break: break-all;
 }
 
-/* ------------------------------------------------------------------------
-   KLADÍVKO
-   ------------------------------------------------------------------------ */
-
-.hammer-assembly {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  z-index: 5;
-
-  width: 154px;
-  height: 126px;
-
-  transform-origin: 82% 88%;
-
-  animation: hammer-strike 1.55s ease-in-out infinite;
+.code-cursor {
+  width: 10px;
+  height: 15px;
+  background: var(--bitcoin-orange);
+  animation: terminal-cursor-blink 0.9s step-end infinite;
 }
 
-.hammer {
-  position: relative;
-
-  width: 154px;
-  height: 126px;
+.block-progress {
+  display: grid;
+  gap: 8px;
+  text-align: left;
 }
 
-/* Hlava kladiva. */
-.hammer-head {
-  position: absolute;
-  top: 7px;
-  left: 5px;
-
-  width: 78px;
-  height: 26px;
-
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 4px;
-
-  background:
-    linear-gradient(
-      180deg,
-      #edf0f2 0%,
-      #b6bdc4 48%,
-      #727b83 100%
-    );
-
-  box-shadow:
-    0 7px 16px rgba(0, 0, 0, 0.45),
-    inset 0 1px 0 rgba(255, 255, 255, 0.34);
+.progress-label {
+  color: var(--muted);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
 }
 
-/* Zadní zúžená část hlavy. */
-.hammer-head::before {
-  content: "";
-  position: absolute;
-  top: 4px;
-  left: -19px;
-
-  width: 21px;
-  height: 18px;
-
-  clip-path: polygon(100% 0, 100% 100%, 0 72%, 0 28%);
-
-  background:
-    linear-gradient(
-      180deg,
-      #d7dce0,
-      #7a838a
-    );
+.progress-track {
+  height: 9px;
+  overflow: hidden;
+  border: 1px solid rgba(247, 147, 26, 0.18);
+  background: rgba(255, 255, 255, 0.03);
 }
 
-/* Úderná část. */
-.hammer-head::after {
-  content: "";
-  position: absolute;
-  top: -3px;
-  right: -18px;
-
-  width: 20px;
-  height: 32px;
-
-  border-radius: 0 5px 5px 0;
-
-  background:
-    linear-gradient(
-      180deg,
-      #e0e4e7,
-      #858d94
-    );
-
-  box-shadow: 3px 4px 9px rgba(0, 0, 0, 0.28);
-}
-
-/* Rukojeť. */
-.hammer-handle {
-  position: absolute;
-  top: 25px;
-  left: 62px;
-
-  width: 13px;
-  height: 99px;
-
-  border-radius: 999px;
-
+.progress-fill {
+  display: block;
+  width: 36%;
+  height: 100%;
   background:
     linear-gradient(
       90deg,
-      #593718 0%,
-      #b77938 48%,
-      #68411f 100%
+      rgba(247, 147, 26, 0.55),
+      rgba(255, 177, 74, 0.95)
     );
-
-  transform: rotate(-19deg);
-  transform-origin: top center;
-
-  box-shadow:
-    3px 7px 12px rgba(0, 0, 0, 0.40),
-    inset 1px 0 0 rgba(255, 255, 255, 0.15);
-}
-
-/* ------------------------------------------------------------------------
-   ČÁRKY PŘI ÚDERU
-   ------------------------------------------------------------------------ */
-
-.impact-mark {
-  position: absolute;
-  top: 104px;
-  z-index: 6;
-
-  width: 22px;
-  height: 3px;
-
-  border-radius: 999px;
-
-  opacity: 0;
-  background: var(--bitcoin-orange);
-
-  box-shadow: 0 0 9px rgba(247, 147, 26, 0.65);
-
-  animation: impact-flash 1.55s ease-in-out infinite;
-}
-
-.impact-mark-left {
-  left: calc(50% - 65px);
-  transform: rotate(-34deg);
-}
-
-.impact-mark-center {
-  left: calc(50% - 10px);
-  top: 91px;
-  transform: rotate(90deg);
-}
-
-.impact-mark-right {
-  left: calc(50% + 43px);
-  transform: rotate(34deg);
+  box-shadow: 0 0 14px rgba(247, 147, 26, 0.18);
+  transition: width 260ms ease;
 }
 
 /* ------------------------------------------------------------------------
@@ -593,9 +426,7 @@ body::before {
 
 .construction-title {
   margin: 0;
-
   color: var(--text);
-
   font-size: clamp(18px, 1.7vw, 26px);
   line-height: 1.2;
   letter-spacing: 0.08em;
@@ -603,9 +434,7 @@ body::before {
 
 .construction-subtitle {
   margin: 9px 0 0;
-
   color: var(--muted);
-
   font-size: 13px;
   line-height: 1.4;
   letter-spacing: 0.04em;
@@ -620,18 +449,12 @@ body::before {
   left: 50%;
   bottom: 18px;
   z-index: 20;
-
   width: min(520px, calc(100% - 32px));
-
   padding: 12px 16px;
-
   border: 1px solid rgba(247, 147, 26, 0.5);
-
   color: var(--text-soft);
   background: #0c0e11;
-
   transform: translateX(-50%);
-
   text-align: center;
   font-size: 11px;
 }
@@ -640,74 +463,28 @@ body::before {
    ANIMACE
    ------------------------------------------------------------------------ */
 
-@keyframes hammer-strike {
-  0%,
-  32%,
-  100% {
-    transform:
-      translate(-16%, 0)
-      rotate(-31deg);
+@keyframes block-glow {
+  0%, 100% {
+    box-shadow:
+      0 22px 55px rgba(0, 0, 0, 0.48),
+      0 0 24px rgba(247, 147, 26, 0.08),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.02);
   }
 
-  47% {
-    transform:
-      translate(-16%, 82px)
-      rotate(7deg);
-  }
-
-  54% {
-    transform:
-      translate(-16%, 75px)
-      rotate(2deg);
-  }
-
-  72% {
-    transform:
-      translate(-16%, 24px)
-      rotate(-18deg);
+  50% {
+    box-shadow:
+      0 22px 55px rgba(0, 0, 0, 0.48),
+      0 0 36px rgba(247, 147, 26, 0.14),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.02);
   }
 }
 
-@keyframes block-impact {
-  0%,
-  43%,
-  100% {
-    transform:
-      translateX(-50%)
-      translateY(0)
-      scaleX(1);
-
-    border-color: rgba(247, 147, 26, 0.72);
+@keyframes led-pulse {
+  0%, 100% {
+    opacity: 0.55;
   }
 
-  47%,
-  55% {
-    transform:
-      translateX(-50%)
-      translateY(5px)
-      scaleX(1.015);
-
-    border-color: var(--bitcoin-orange-light);
-  }
-
-  68% {
-    transform:
-      translateX(-50%)
-      translateY(0)
-      scaleX(1);
-  }
-}
-
-@keyframes impact-flash {
-  0%,
-  43%,
-  61%,
-  100% {
-    opacity: 0;
-  }
-
-  47%,
-  55% {
+  50% {
     opacity: 1;
   }
 }
@@ -717,20 +494,17 @@ body::before {
     transform: translateX(-125%);
   }
 
-  38%,
-  100% {
+  38%, 100% {
     transform: translateX(145%);
   }
 }
 
 @keyframes terminal-cursor-blink {
-  0%,
-  49% {
+  0%, 49% {
     opacity: 1;
   }
 
-  50%,
-  100% {
+  50%, 100% {
     opacity: 0;
   }
 }
@@ -773,11 +547,7 @@ body::before {
 
   .coming-soon-content {
     place-items: start center;
-
-    padding:
-      42px
-      18px
-      36px;
+    padding: 42px 18px 36px;
   }
 
   .coming-soon-stage {
@@ -786,7 +556,6 @@ body::before {
 
   .hero-kicker {
     margin-bottom: 14px;
-
     font-size: 9px;
     line-height: 1.5;
   }
@@ -804,42 +573,30 @@ body::before {
   .build-scene {
     width: 330px;
     max-width: 88vw;
-    height: 218px;
     margin-bottom: 17px;
   }
 
   .bitcoin-block {
-    width: 270px;
-    max-width: 76vw;
-    min-height: 120px;
+    min-height: 270px;
+    padding: 16px 14px 18px;
   }
 
-  .block-center {
-    font-size: 58px;
+  .block-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
   }
 
-  .hammer-assembly {
-    width: 134px;
-    height: 112px;
+  .block-row-wide {
+    grid-column: auto;
   }
 
-  .hammer {
-    width: 134px;
-    height: 112px;
+  .row-value {
+    font-size: 14px;
   }
 
-  .hammer-head {
-    width: 67px;
-    height: 23px;
-  }
-
-  .hammer-head::after {
-    height: 29px;
-  }
-
-  .hammer-handle {
-    left: 54px;
-    height: 86px;
+  .row-value-hash,
+  .code-stream {
+    font-size: 12px;
   }
 
   .construction-title {
@@ -864,12 +621,15 @@ body::before {
     width: 300px;
   }
 
-  .bitcoin-block {
-    width: 242px;
+  .block-header-title {
+    font-size: 11px;
   }
 
   .block-top-line,
-  .block-bottom-line {
+  .block-bottom-line,
+  .row-label,
+  .progress-label,
+  .code-label {
     font-size: 9px;
   }
 }
