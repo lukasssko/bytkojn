@@ -1,7 +1,6 @@
 /* ========================================================================
    BYTKOJN – DOČASNÁ ÚVODNÍ STRÁNKA
-   Samostatná „coming soon“ varianta bez navigace, karet a patičky.
-   Celý obsah tohoto souboru vlož do assets/css/styles.css.
+   Celý obsah tohoto souboru patří do assets/css/styles.css.
    ======================================================================== */
 
 :root {
@@ -27,7 +26,7 @@
 }
 
 /* ------------------------------------------------------------------------
-   ZÁKLADNÍ NASTAVENÍ
+   ZÁKLAD
    ------------------------------------------------------------------------ */
 
 * {
@@ -42,8 +41,10 @@ body {
   min-height: 100vh;
   margin: 0;
   overflow-x: hidden;
+
   color: var(--text);
   background: var(--background);
+
   font-family: var(--font-mono);
 }
 
@@ -54,7 +55,6 @@ body {
 
 /* ------------------------------------------------------------------------
    POZADÍ
-   Jemná technická mřížka a tlumené oranžové světlo.
    ------------------------------------------------------------------------ */
 
 .background-grid {
@@ -88,18 +88,18 @@ body::before {
   background:
     radial-gradient(
       circle at 84% 12%,
-      rgba(247, 147, 26, 0.11),
+      rgba(247, 147, 26, 0.10),
       transparent 28%
     ),
     radial-gradient(
       circle at 8% 92%,
-      rgba(247, 147, 26, 0.055),
+      rgba(247, 147, 26, 0.05),
       transparent 30%
     );
 }
 
 /* ------------------------------------------------------------------------
-   CELÁ STRÁNKA
+   VNĚJŠÍ PANEL
    ------------------------------------------------------------------------ */
 
 .coming-soon-shell {
@@ -109,8 +109,10 @@ body::before {
 
 .coming-soon-panel {
   min-height: calc(100vh - 32px);
-  display: flex;
-  flex-direction: column;
+
+  display: grid;
+  grid-template-rows: 43px minmax(0, 1fr);
+
   overflow: hidden;
 
   border: 1px solid var(--line);
@@ -120,7 +122,7 @@ body::before {
     linear-gradient(
       145deg,
       rgba(20, 23, 27, 0.89),
-      rgba(10, 12, 15, 0.95)
+      rgba(10, 12, 15, 0.96)
     );
 
   box-shadow: 0 24px 80px rgba(0, 0, 0, 0.42);
@@ -131,12 +133,12 @@ body::before {
    ------------------------------------------------------------------------ */
 
 .terminal-bar {
-  min-height: 43px;
+  min-width: 0;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 24px;
-  flex: 0 0 auto;
 
   padding: 0 18px;
   border-bottom: 1px solid var(--line);
@@ -184,41 +186,46 @@ body::before {
 }
 
 /* ------------------------------------------------------------------------
-   HLAVNÍ OBSAH
-   Nadpis i spodní grafika jsou skutečně uprostřed stránky.
+   VYSTŘEDĚNÍ CELÉHO OBSAHU
    ------------------------------------------------------------------------ */
 
 .coming-soon-content {
-  width: min(1420px, 100%);
+  min-width: 0;
   min-height: 0;
-  flex: 1;
+
+  display: grid;
+  place-items: center;
+
+  padding:
+    clamp(38px, 5vh, 68px)
+    clamp(22px, 4vw, 64px);
+}
+
+.coming-soon-stage {
+  width: min(1500px, 100%);
 
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 
-  gap: clamp(42px, 6vh, 72px);
-
-  margin: 0 auto;
-  padding:
-    clamp(42px, 6vh, 76px)
-    clamp(24px, 5vw, 76px)
-    clamp(34px, 5vh, 62px);
+  gap: clamp(44px, 5.5vh, 68px);
 
   text-align: center;
 }
 
 /* ------------------------------------------------------------------------
-   DYNAMICKÝ NADPIS
+   NADPIS
    ------------------------------------------------------------------------ */
 
 .hero-copy {
   width: 100%;
-  min-width: 0;
 
-  display: grid;
-  justify-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  text-align: center;
 }
 
 .hero-kicker {
@@ -234,26 +241,26 @@ body::before {
 
 .hero-copy h1 {
   width: 100%;
-  max-width: 1380px;
-  margin: 0 auto;
+  margin: 0;
 
   color: var(--text);
 
   text-align: center;
   text-transform: uppercase;
 
-  font-size: clamp(48px, 6.7vw, 106px);
+  font-size: clamp(46px, 6.25vw, 102px);
   line-height: 0.92;
   letter-spacing: -0.075em;
 }
 
 .hero-title-fixed {
   display: block;
-  color: var(--text);
+  width: 100%;
 }
 
 .rotating-line {
   display: block;
+  width: 100%;
   min-height: 1.08em;
   margin-top: 0.12em;
 
@@ -262,6 +269,7 @@ body::before {
 
 .rotating-word {
   display: inline-block;
+
   color: var(--bitcoin-orange);
 
   transition:
@@ -284,155 +292,39 @@ body::before {
 }
 
 /* ------------------------------------------------------------------------
-   BLOK BITCOINU A KLADÍVKO
+   STAVEBNÍ GRAFIKA
    ------------------------------------------------------------------------ */
 
 .construction-status {
-  display: grid;
-  justify-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   text-align: center;
 }
 
-.build-visual {
+.build-scene {
   position: relative;
 
-  width: min(420px, 82vw);
-  height: 248px;
-
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
+  width: 390px;
+  max-width: 84vw;
+  height: 240px;
 
   margin-bottom: 22px;
 }
 
-/* Celá animovaná sestava kladívka. */
-.hammer-assembly {
-  position: absolute;
-  top: 2px;
-  left: 50%;
-  z-index: 3;
+/* ------------------------------------------------------------------------
+   BITCOINOVÝ BLOK
+   ------------------------------------------------------------------------ */
 
-  width: 128px;
-  height: 105px;
-
-  transform:
-    translateX(-14%)
-    translateY(0)
-    rotate(-28deg);
-
-  transform-origin: 78% 90%;
-
-  animation: hammer-strike 1.7s ease-in-out infinite;
-}
-
-.hammer {
-  position: relative;
-  width: 128px;
-  height: 105px;
-}
-
-/* Kovová hlava kladívka. */
-.hammer-head {
-  position: absolute;
-  top: 5px;
-  left: 3px;
-
-  width: 66px;
-  height: 22px;
-
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 3px;
-
-  background:
-    linear-gradient(
-      180deg,
-      #d8dde2 0%,
-      #a3abb3 52%,
-      #757d85 100%
-    );
-
-  box-shadow:
-    0 5px 12px rgba(0, 0, 0, 0.38),
-    inset 0 1px 0 rgba(255, 255, 255, 0.28);
-}
-
-/* Užší zadní část hlavy. */
-.hammer-head::before {
-  content: "";
-  position: absolute;
-  top: 3px;
-  left: -13px;
-
-  width: 15px;
-  height: 16px;
-
-  border-radius: 3px 0 0 3px;
-
-  background:
-    linear-gradient(
-      180deg,
-      #c8ced4,
-      #7d858d
-    );
-}
-
-/* Úderná část hlavy. */
-.hammer-head::after {
-  content: "";
-  position: absolute;
-  top: -2px;
-  right: -14px;
-
-  width: 16px;
-  height: 26px;
-
-  border-radius: 0 4px 4px 0;
-
-  background:
-    linear-gradient(
-      180deg,
-      #cfd5da,
-      #818990
-    );
-
-  box-shadow: 2px 3px 7px rgba(0, 0, 0, 0.22);
-}
-
-/* Rukojeť kladívka. */
-.hammer-handle {
-  position: absolute;
-  top: 20px;
-  left: 49px;
-
-  width: 11px;
-  height: 83px;
-
-  border-radius: 999px;
-
-  background:
-    linear-gradient(
-      90deg,
-      #65401f 0%,
-      #a96d31 48%,
-      #694320 100%
-    );
-
-  transform: rotate(-17deg);
-  transform-origin: top center;
-
-  box-shadow:
-    2px 5px 10px rgba(0, 0, 0, 0.35),
-    inset 1px 0 0 rgba(255, 255, 255, 0.13);
-}
-
-/* Samotný bitcoinový blok. */
 .bitcoin-block {
-  position: relative;
+  position: absolute;
+  left: 50%;
+  bottom: 0;
 
-  width: min(310px, 74vw);
-  min-height: 138px;
+  width: 310px;
+  max-width: 78vw;
+  min-height: 132px;
 
   display: grid;
   align-content: center;
@@ -442,23 +334,23 @@ body::before {
 
   overflow: hidden;
 
-  border: 1px solid rgba(247, 147, 26, 0.48);
+  border: 2px solid rgba(247, 147, 26, 0.72);
   border-radius: var(--radius);
 
   background:
     linear-gradient(
-      rgba(255, 255, 255, 0.024) 1px,
+      rgba(255, 255, 255, 0.03) 1px,
       transparent 1px
     ),
     linear-gradient(
       90deg,
-      rgba(255, 255, 255, 0.024) 1px,
+      rgba(255, 255, 255, 0.03) 1px,
       transparent 1px
     ),
     linear-gradient(
       145deg,
-      rgba(22, 25, 29, 0.98),
-      rgba(9, 11, 14, 0.99)
+      rgba(25, 29, 34, 0.99),
+      rgba(8, 10, 13, 0.99)
     );
 
   background-size:
@@ -466,12 +358,14 @@ body::before {
     22px 22px,
     auto;
 
-  box-shadow:
-    0 20px 52px rgba(0, 0, 0, 0.44),
-    0 0 24px rgba(247, 147, 26, 0.035),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.015);
+  transform: translateX(-50%);
 
-  animation: block-impact 1.7s ease-in-out infinite;
+  box-shadow:
+    0 22px 55px rgba(0, 0, 0, 0.48),
+    0 0 34px rgba(247, 147, 26, 0.10),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.02);
+
+  animation: block-impact 1.55s ease-in-out infinite;
 }
 
 .bitcoin-block::before {
@@ -484,13 +378,14 @@ body::before {
   background:
     linear-gradient(
       115deg,
-      transparent 25%,
-      rgba(247, 147, 26, 0.055) 49%,
+      transparent 26%,
+      rgba(247, 147, 26, 0.09) 49%,
       transparent 72%
     );
 
-  transform: translateX(-120%);
-  animation: block-scan 4.8s linear infinite;
+  transform: translateX(-125%);
+
+  animation: block-scan 4.5s linear infinite;
 }
 
 .block-top-line,
@@ -508,35 +403,162 @@ body::before {
 
   font-size: 10px;
   line-height: 1.3;
-  letter-spacing: 0.07em;
+  letter-spacing: 0.08em;
+}
+
+.block-top-line {
+  color: var(--bitcoin-orange-light);
+  font-weight: 800;
 }
 
 .block-center {
   position: relative;
   z-index: 1;
 
-  margin: 7px 0 5px;
+  margin: 5px 0 4px;
 
   color: var(--bitcoin-orange);
 
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 66px;
+  font-size: 68px;
   font-weight: 900;
   line-height: 1;
 
   text-shadow:
-    0 0 17px rgba(247, 147, 26, 0.17);
+    0 0 20px rgba(247, 147, 26, 0.24);
 
   transform: rotate(12deg);
 }
 
-/* Krátké oranžové čárky při úderu. */
-.impact-mark {
+/* ------------------------------------------------------------------------
+   KLADÍVKO
+   ------------------------------------------------------------------------ */
+
+.hammer-assembly {
   position: absolute;
-  top: 105px;
-  z-index: 4;
+  top: 0;
+  left: 50%;
+  z-index: 5;
+
+  width: 154px;
+  height: 126px;
+
+  transform-origin: 82% 88%;
+
+  animation: hammer-strike 1.55s ease-in-out infinite;
+}
+
+.hammer {
+  position: relative;
+
+  width: 154px;
+  height: 126px;
+}
+
+/* Hlava kladiva. */
+.hammer-head {
+  position: absolute;
+  top: 7px;
+  left: 5px;
+
+  width: 78px;
+  height: 26px;
+
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 4px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #edf0f2 0%,
+      #b6bdc4 48%,
+      #727b83 100%
+    );
+
+  box-shadow:
+    0 7px 16px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.34);
+}
+
+/* Zadní zúžená část hlavy. */
+.hammer-head::before {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: -19px;
 
   width: 21px;
+  height: 18px;
+
+  clip-path: polygon(100% 0, 100% 100%, 0 72%, 0 28%);
+
+  background:
+    linear-gradient(
+      180deg,
+      #d7dce0,
+      #7a838a
+    );
+}
+
+/* Úderná část. */
+.hammer-head::after {
+  content: "";
+  position: absolute;
+  top: -3px;
+  right: -18px;
+
+  width: 20px;
+  height: 32px;
+
+  border-radius: 0 5px 5px 0;
+
+  background:
+    linear-gradient(
+      180deg,
+      #e0e4e7,
+      #858d94
+    );
+
+  box-shadow: 3px 4px 9px rgba(0, 0, 0, 0.28);
+}
+
+/* Rukojeť. */
+.hammer-handle {
+  position: absolute;
+  top: 25px;
+  left: 62px;
+
+  width: 13px;
+  height: 99px;
+
+  border-radius: 999px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #593718 0%,
+      #b77938 48%,
+      #68411f 100%
+    );
+
+  transform: rotate(-19deg);
+  transform-origin: top center;
+
+  box-shadow:
+    3px 7px 12px rgba(0, 0, 0, 0.40),
+    inset 1px 0 0 rgba(255, 255, 255, 0.15);
+}
+
+/* ------------------------------------------------------------------------
+   ČÁRKY PŘI ÚDERU
+   ------------------------------------------------------------------------ */
+
+.impact-mark {
+  position: absolute;
+  top: 104px;
+  z-index: 6;
+
+  width: 22px;
   height: 3px;
 
   border-radius: 999px;
@@ -544,23 +566,29 @@ body::before {
   opacity: 0;
   background: var(--bitcoin-orange);
 
-  box-shadow: 0 0 8px rgba(247, 147, 26, 0.45);
+  box-shadow: 0 0 9px rgba(247, 147, 26, 0.65);
 
-  animation: impact-flash 1.7s ease-in-out infinite;
+  animation: impact-flash 1.55s ease-in-out infinite;
 }
 
 .impact-mark-left {
-  left: calc(50% - 58px);
-  transform: rotate(-31deg);
+  left: calc(50% - 65px);
+  transform: rotate(-34deg);
+}
+
+.impact-mark-center {
+  left: calc(50% - 10px);
+  top: 91px;
+  transform: rotate(90deg);
 }
 
 .impact-mark-right {
-  left: calc(50% + 36px);
-  transform: rotate(31deg);
+  left: calc(50% + 43px);
+  transform: rotate(34deg);
 }
 
 /* ------------------------------------------------------------------------
-   TEXT POD GRAFIKOU
+   POPISEK
    ------------------------------------------------------------------------ */
 
 .construction-title {
@@ -568,7 +596,7 @@ body::before {
 
   color: var(--text);
 
-  font-size: clamp(18px, 1.8vw, 26px);
+  font-size: clamp(18px, 1.7vw, 26px);
   line-height: 1.2;
   letter-spacing: 0.08em;
 }
@@ -584,7 +612,7 @@ body::before {
 }
 
 /* ------------------------------------------------------------------------
-   ZPRÁVA PRO VYPNUTÝ JAVASCRIPT
+   NOSCRIPT
    ------------------------------------------------------------------------ */
 
 .noscript-message {
@@ -596,6 +624,7 @@ body::before {
   width: min(520px, calc(100% - 32px));
 
   padding: 12px 16px;
+
   border: 1px solid rgba(247, 147, 26, 0.5);
 
   color: var(--text-soft);
@@ -613,33 +642,29 @@ body::before {
 
 @keyframes hammer-strike {
   0%,
-  34%,
+  32%,
   100% {
     transform:
-      translateX(-14%)
-      translateY(0)
-      rotate(-28deg);
+      translate(-16%, 0)
+      rotate(-31deg);
   }
 
-  48% {
+  47% {
     transform:
-      translateX(-14%)
-      translateY(78px)
-      rotate(5deg);
+      translate(-16%, 82px)
+      rotate(7deg);
   }
 
-  55% {
+  54% {
     transform:
-      translateX(-14%)
-      translateY(71px)
-      rotate(1deg);
+      translate(-16%, 75px)
+      rotate(2deg);
   }
 
   72% {
     transform:
-      translateX(-14%)
-      translateY(23px)
-      rotate(-17deg);
+      translate(-16%, 24px)
+      rotate(-18deg);
   }
 }
 
@@ -647,43 +672,54 @@ body::before {
   0%,
   43%,
   100% {
-    transform: translateY(0);
-    border-color: rgba(247, 147, 26, 0.48);
+    transform:
+      translateX(-50%)
+      translateY(0)
+      scaleX(1);
+
+    border-color: rgba(247, 147, 26, 0.72);
   }
 
-  48%,
+  47%,
   55% {
-    transform: translateY(4px);
-    border-color: rgba(255, 177, 74, 0.88);
+    transform:
+      translateX(-50%)
+      translateY(5px)
+      scaleX(1.015);
+
+    border-color: var(--bitcoin-orange-light);
   }
 
   68% {
-    transform: translateY(0);
+    transform:
+      translateX(-50%)
+      translateY(0)
+      scaleX(1);
   }
 }
 
 @keyframes impact-flash {
   0%,
   43%,
-  62%,
+  61%,
   100% {
     opacity: 0;
   }
 
-  48%,
-  54% {
+  47%,
+  55% {
     opacity: 1;
   }
 }
 
 @keyframes block-scan {
   0% {
-    transform: translateX(-120%);
+    transform: translateX(-125%);
   }
 
-  36%,
+  38%,
   100% {
-    transform: translateX(140%);
+    transform: translateX(145%);
   }
 }
 
@@ -700,22 +736,21 @@ body::before {
 }
 
 /* ------------------------------------------------------------------------
-   RESPONZIVITA – TABLETY A MENŠÍ NOTEBOOKY
+   TABLETY
    ------------------------------------------------------------------------ */
 
 @media (max-width: 1000px) {
   .coming-soon-content {
-    gap: 46px;
-    padding-inline: 32px;
+    padding-inline: 30px;
   }
 
   .hero-copy h1 {
-    font-size: clamp(46px, 8vw, 82px);
+    font-size: clamp(44px, 8vw, 82px);
   }
 }
 
 /* ------------------------------------------------------------------------
-   RESPONZIVITA – MOBILY
+   MOBILY
    ------------------------------------------------------------------------ */
 
 @media (max-width: 760px) {
@@ -725,10 +760,10 @@ body::before {
 
   .coming-soon-panel {
     min-height: calc(100vh - 16px);
+    grid-template-rows: 40px minmax(0, 1fr);
   }
 
   .terminal-bar {
-    min-height: 40px;
     padding-inline: 13px;
   }
 
@@ -737,13 +772,16 @@ body::before {
   }
 
   .coming-soon-content {
-    justify-content: flex-start;
-    gap: 42px;
+    place-items: start center;
 
     padding:
-      46px
-      20px
-      38px;
+      42px
+      18px
+      36px;
+  }
+
+  .coming-soon-stage {
+    gap: 40px;
   }
 
   .hero-kicker {
@@ -754,58 +792,54 @@ body::before {
   }
 
   .hero-copy h1 {
-    font-size: clamp(40px, 12.5vw, 68px);
+    font-size: clamp(38px, 12vw, 66px);
     line-height: 0.96;
     letter-spacing: -0.065em;
   }
 
   .rotating-line {
-    min-height: 2.12em;
+    min-height: 2.1em;
   }
 
-  .build-visual {
-    width: min(340px, 88vw);
-    height: 220px;
-    margin-bottom: 16px;
-  }
-
-  .hammer-assembly {
-    top: 0;
-    width: 112px;
-    height: 95px;
-  }
-
-  .hammer {
-    width: 112px;
-    height: 95px;
-  }
-
-  .hammer-head {
-    width: 58px;
-    height: 20px;
-  }
-
-  .hammer-head::after {
-    height: 24px;
-  }
-
-  .hammer-handle {
-    left: 44px;
-    height: 75px;
+  .build-scene {
+    width: 330px;
+    max-width: 88vw;
+    height: 218px;
+    margin-bottom: 17px;
   }
 
   .bitcoin-block {
-    width: min(270px, 76vw);
-    min-height: 126px;
-    padding-inline: 16px;
+    width: 270px;
+    max-width: 76vw;
+    min-height: 120px;
   }
 
   .block-center {
     font-size: 58px;
   }
 
-  .impact-mark {
-    top: 96px;
+  .hammer-assembly {
+    width: 134px;
+    height: 112px;
+  }
+
+  .hammer {
+    width: 134px;
+    height: 112px;
+  }
+
+  .hammer-head {
+    width: 67px;
+    height: 23px;
+  }
+
+  .hammer-head::after {
+    height: 29px;
+  }
+
+  .hammer-handle {
+    left: 54px;
+    height: 86px;
   }
 
   .construction-title {
@@ -819,19 +853,19 @@ body::before {
 
 @media (max-width: 420px) {
   .coming-soon-content {
-    padding-inline: 14px;
+    padding-inline: 13px;
   }
 
   .hero-copy h1 {
-    font-size: clamp(36px, 12vw, 52px);
+    font-size: clamp(34px, 11.5vw, 50px);
   }
 
-  .build-visual {
-    width: min(310px, 92vw);
+  .build-scene {
+    width: 300px;
   }
 
   .bitcoin-block {
-    width: min(245px, 78vw);
+    width: 242px;
   }
 
   .block-top-line,
@@ -841,7 +875,7 @@ body::before {
 }
 
 /* ------------------------------------------------------------------------
-   OMEZENÍ ANIMACÍ PODLE NASTAVENÍ UŽIVATELE
+   OMEZENÍ POHYBU
    ------------------------------------------------------------------------ */
 
 @media (prefers-reduced-motion: reduce) {
