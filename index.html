@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="BYTKOJN – základní koncept webu o Bitcoinu.">
+  <meta name="theme-color" content="#0a0b0d">
+
+  <!-- Ikona stránky v záložce prohlížeče. -->
+  <link rel="icon" href="assets/media/favicon.svg" type="image/svg+xml">
+
+  <!--Hlavní CSS soubor. V něm jsou barvy, rozložení, responzivita kompletní vzhled celé stránky.-->
+  <link rel="stylesheet" href="assets/css/styles.css">
+
+  <title>BYTKOJN | Bitcoin bez pozlátka</title>
+</head>
+<body>
+  <!--
+    Dekorativní vrstva vytvářející jemnou technickou mřížku na pozadí.
+    Nemá žádný obsahový význam, proto je skrytá pro čtečky obrazovky.
+  -->
+  <div class="background-grid" aria-hidden="true"></div>
+
+  <!-- ============================================================
+       HORNÍ HORIZONTÁLNÍ PANEL
+       Obsahuje značku webu a hlavní záložky.
+       JavaScript po kliknutí na záložku přepíše levý panel i obsah.
+       ============================================================ -->
+  <header class="topbar">
+<!--Textové logo BYTKOJN. Jednotlivé části jsou oddělené, aby mohly mít různé barvy.-->
+    <a class="brand" href="index.html" aria-label="BYTKOJN – úvodní stránka">
+      <span class="brand-bracket" aria-hidden="true">&lt;</span>
+      <span class="brand-name">bytkojn</span>
+      <span class="brand-slash" aria-hidden="true">/</span>
+      <span class="brand-bracket" aria-hidden="true">&gt;</span>
+    </a>
+
+    <!-- Tlačítka jsou použita proto, že zatím nepřecházíme na jiné stránky,
+         ale pouze dynamicky měníme obsah této jedné úvodní stránky. -->
+    <nav class="top-navigation" aria-label="Hlavní navigace">
+      <a class="top-tab" href="pages/page-bitcoin.html">Bitcoin</a>
+      <button class="top-tab" type="button" data-section="money">Peníze</button>
+      <button class="top-tab" type="button" data-section="network">Síť</button>
+      <button class="top-tab" type="button" data-section="tools">Nástroje</button>
+    </nav>
+
+    <!-- Čistě vizuální indikátor stavu webu. -->
+    <div class="node-status" title="Ukázkový stav stránky">
+      <span class="status-dot" aria-hidden="true"></span>
+      <span>ONLINE</span>
+    </div>
+  </header>
+
+  <!-- ============================================================
+       HLAVNÍ DVOUSLOUPCOVÉ ROZLOŽENÍ
+       Vlevo je svislá navigace, vpravo hlavní obsah stránky.
+       ============================================================ -->
+  <div class="app-shell">
+
+    <!-- ==========================================================
+         LEVÝ VERTIKÁLNÍ PANEL
+         Položky uvnitř generuje JavaScript podle aktivní horní záložky.
+         ========================================================== -->
+    <aside
+      class="sidebar"
+      id="sidebar"
+      aria-label="Levý panel"
+    >
+
+      <!-- Grafika zobrazená pouze na úvodní stránce. -->
+      <div class="sidebar-home-visual" aria-hidden="true">
+
+        <svg
+          class="sidebar-circuit"
+          viewBox="0 0 280 760"
+          preserveAspectRatio="xMidYMid slice"
+        >
+          <defs>
+            <filter
+              id="circuitGlow"
+              x="-100%"
+              y="-100%"
+              width="300%"
+              height="300%"
+            >
+              <feGaussianBlur stdDeviation="5" result="blur"></feGaussianBlur>
+              <feMerge>
+                <feMergeNode in="blur"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+              </feMerge>
+            </filter>
+          </defs>
+
+          <!-- Tlumené obvodové cesty. -->
+          <path
+            class="circuit-trace"
+            d="M42 0 V76 H82 V140 H54 V226 H96 V310 H70 V414 H110 V504 H82 V760"
+          ></path>
+
+          <path
+            class="circuit-trace"
+            d="M92 0 V104 H122 V184 H88 V268 H132 V354 H102 V452 H142 V548 H110 V760"
+          ></path>
+
+          <path
+            class="circuit-trace"
+            d="M190 0 V92 H158 V178 H204 V270 H168 V366 H216 V458 H180 V560 H226 V760"
+          ></path>
+
+          <path
+            class="circuit-trace circuit-trace-faint"
+            d="M238 0 V118 H210 V210 H248 V304 H218 V398 H258 V488 H224 V596 H254 V760"
+          ></path>
+
+          <!-- Hlavní oranžová signálová cesta. -->
+          <path
+            class="circuit-trace circuit-trace-active"
+            d="M132 0 V128 H112 V236 H146 V430 H126 V570 H160 V760"
+          ></path>
+
+          <!-- Tlumené uzly. -->
+          <circle class="circuit-node" cx="42" cy="76" r="5"></circle>
+          <circle class="circuit-node" cx="96" cy="310" r="5"></circle>
+          <circle class="circuit-node" cx="70" cy="414" r="5"></circle>
+          <circle class="circuit-node" cx="190" cy="92" r="5"></circle>
+          <circle class="circuit-node" cx="216" cy="458" r="5"></circle>
+          <circle class="circuit-node" cx="180" cy="560" r="5"></circle>
+
+          <!-- Oranžové aktivní uzly. -->
+          <circle
+            class="circuit-node circuit-node-active"
+            cx="112"
+            cy="128"
+            r="6"
+            filter="url(#circuitGlow)"
+          ></circle>
+
+          <circle
+            class="circuit-node circuit-node-active circuit-node-delay"
+            cx="126"
+            cy="430"
+            r="6"
+            filter="url(#circuitGlow)"
+          ></circle>
+
+          <!-- Drobné technické značky. -->
+          <g class="circuit-marks">
+            <rect x="224" y="152" width="7" height="7"></rect>
+            <rect x="224" y="169" width="7" height="7"></rect>
+            <rect x="224" y="186" width="7" height="7"></rect>
+
+            <rect x="52" y="586" width="6" height="6"></rect>
+            <rect x="52" y="602" width="6" height="6"></rect>
+            <rect x="52" y="618" width="6" height="6"></rect>
+          </g>
+
+        </svg>
+
+      </div>
+
+
+      <!-- Navigace zobrazená v ostatních hlavních sekcích. -->
+      <div class="sidebar-navigation-content">
+
+        <div class="sidebar-heading">
+          <span class="eyebrow">// AKTUÁLNÍ MODUL</span>
+          <h2 id="sidebarTitle">Startovní bod</h2>
+        </div>
+
+        <nav
+          id="sideNavigation"
+          class="side-navigation"
+          aria-label="Podnavigace"
+        ></nav>
+
+        <div class="sidebar-note">
+          <span class="sidebar-note-label">// poznámka</span>
+
+          <p>
+            Názvy i obsah jsou záměrně univerzální. Později je můžeš
+            přepsat přímo v souboru
+            <strong>assets/js/app.js</strong>.
+          </p>
+        </div>
+
+      </div>
+    </aside>  
+
+    <!-- ==========================================================
+         HLAVNÍ OBSAH
+         Obsahuje hero blok, informační panely a terminálový výpis.
+         ========================================================== -->
+    <main class="content-area" id="mainContent">
+      <section class="hero-panel">
+        <div class="terminal-bar">
+        <div class="terminal-path" id="terminalPath">
+          ~/bytkojn/home/overview
+        </div>
+
+        <div class="terminal-meta" aria-label="Terminálový motiv">
+          <span class="term-cmd">grep</span>
+          <span class="term-flag">-R</span>
+          <span class="term-query">"truth"</span>
+          <span class="term-search-path">/out/there</span>
+        </div>
+      </div>
+
+      <div class="hero-layout">
+        <!-- Levý sloupec: nadpis a úvodní text. -->
+        <div class="hero-copy">
+          <p class="hero-kicker">
+            OTEVŘENĚ O BITCOINU A PENĚZÍCH
+          </p>
+
+          <h1 id="contentTitle" aria-label="Bitcoin bez pozlátka">
+            Bitcoin bez
+            <span class="rotating-line">
+              <span
+                id="rotatingWord"
+                class="rotating-word"
+                aria-hidden="true"
+              >pozlátka</span>
+            </span>
+          </h1>
+
+          <p class="hero-lead" id="contentLead">
+            Český průvodce Bitcoinem, penězi a světem kolem nich.
+            Od prvních principů přes historii a ekonomii až po technologie,
+            projekty a lidi, kteří Bitcoin tvoří.
+          </p>
+        </div>
+        <!-- Konec .hero-copy -->
+
+        <!-- Pravý sloupec: terminálová karta. -->
+        <div class="node-card" aria-label="Ukázka příkazu Bitcoin Core">
+          <div class="node-card-header">
+            <span>bitcoin-core / rpc</span>
+            <span class="window-dots" aria-hidden="true">● ● ●</span>
+          </div>
+
+          <div class="node-screen">
+            <p>
+              <span class="prompt">$</span>
+              bitcoin-cli getblockhash 0
+            </p>
+
+            <p class="hash-output">
+              000000000019d668…a8ce26f
+            </p>
+
+            <p>
+              <span class="prompt">$</span>
+              bitcoin-cli getblockcount
+            </p>
+
+            <p>
+              <span class="log-ok">[rpc]</span>
+              awaiting node response
+            </p>
+
+            <p class="cursor-line">
+              <span class="prompt">$</span>
+              <span class="cursor" aria-hidden="true"></span>
+            </p>
+          </div>
+        </div>
+        <!-- Konec .node-card -->
+      </div>
+      <!-- Konec .hero-layout -->
+    </section>
+    <!-- Konec .hero-panel -->
+
+
+      <!-- Redakční výběr článků zvýrazněných na úvodní stránce. -->
+      <section class="card-grid" aria-label="Vybraná témata">
+
+        <!-- Karta 01 -->
+        <a class="info-card" id="cardOneLink" href="pages/proc-bitcoin-vznikl.html"> 
+          <span class="card-index">01</span>
+
+          <p class="card-label" id="cardOneLabel">
+            DOPORUČUJEME
+          </p>
+
+          <h2 id="cardOneTitle">
+            Proč Bitcoin vůbec vznikl
+          </h2>
+
+          <p id="cardOneText">
+            Příběh peněz, problém důvěry a důvody, které vedly ke vzniku Bitcoinu.
+          </p>
+        </a>
+
+        <!-- Karta 02 -->
+        <a class="info-card" id="cardTwoLink" href="pages/aktualni-tema.html">
+          <span class="card-index">02</span>
+
+          <p class="card-label" id="cardTwoLabel">
+            AKTUÁLNĚ
+          </p>
+
+          <h2 id="cardTwoTitle">
+            Co se právě děje kolem Bitcoinu
+          </h2>
+
+          <p id="cardTwoText">
+            Vybrané téma, událost nebo problém, kterému má právě smysl věnovat pozornost.
+          </p>
+        </a>
+        <!-- Karta 03 -->
+        <a class="info-card" id="cardThreeLink" href="pages/decentralizace.html">
+          <span class="card-index">03</span>
+
+          <p class="card-label" id="cardThreeLabel">
+            DO HLOUBKY
+          </p>
+
+          <h2 id="cardThreeTitle">
+            Co skutečně znamená decentralizace
+          </h2>
+
+          <p id="cardThreeText">
+            Proč nestačí říct, že Bitcoin nemá centrálního správce, a jakou roli
+            hrají jeho uživatelé a uzly.
+          </p>
+        </a>
+      </section>
+    </main>
+  </div>
+
+  <!-- ============================================================
+      PATIČKA WEBU
+      Obsahuje značku projektu, důležité odkazy a kontakt.
+      ============================================================ -->
+  <footer class="site-footer">
+
+    <div class="footer-main">
+
+      <!-- Logo a sociální odkazy. -->
+      <div class="footer-identity">
+
+        <a
+          class="footer-brand"
+          href="index.html"
+          aria-label="BYTKOJN – úvodní stránka"
+        >
+          <span class="brand-bracket" aria-hidden="true">&lt;</span>
+          <span class="footer-brand-name">bytkojn</span>
+          <span class="brand-slash" aria-hidden="true">/</span>
+          <span class="brand-bracket" aria-hidden="true">&gt;</span>
+        </a>
+
+        <div class="footer-socials">
+
+          <!-- X / Twitter -->
+          <a
+            class="footer-social-link"
+            href="#"
+            aria-label="BYTKOJN na síti X"
+            title="X"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.657l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/>
+            </svg>
+          </a>
+
+          <!-- GitHub -->
+          <a
+            class="footer-social-link"
+            href="#"
+            aria-label="BYTKOJN na GitHubu"
+            title="GitHub"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path d="M12 .7C5.73.7.65 5.78.65 12.05c0 5.02 3.25 9.28 7.76 10.78.57.1.78-.25.78-.55v-2.17c-3.16.69-3.83-1.34-3.83-1.34-.52-1.31-1.26-1.66-1.26-1.66-1.03-.71.08-.7.08-.7 1.14.08 1.74 1.17 1.74 1.17 1.01 1.74 2.66 1.24 3.31.95.1-.74.4-1.24.72-1.52-2.52-.29-5.17-1.26-5.17-5.61 0-1.24.44-2.25 1.17-3.05-.12-.29-.51-1.44.11-3 0 0 .95-.3 3.12 1.16a10.8 10.8 0 0 1 5.68 0C17.03 5.95 17.98 6.25 17.98 6.25c.62 1.56.23 2.71.11 3 .73.8 1.17 1.81 1.17 3.05 0 4.36-2.66 5.31-5.19 5.59.41.35.77 1.04.77 2.1v3.11c0 .3.21.66.78.55a11.36 11.36 0 0 0 7.73-10.78C23.35 5.78 18.27.7 12 .7Z"/>
+            </svg>
+          </a>
+
+        </div>
+      </div>
+
+
+      <!-- Globální informace o projektu. -->
+      <nav class="footer-project" aria-label="Informace o projektu">
+        <p class="footer-heading">// PROJEKT</p>
+
+        <a href="pages/o-projektu.html">
+          O projektu &lt;bytkojn/&gt;
+        </a>
+
+        <a href="pages/disclaimer.html">
+          Disclaimer
+        </a>
+
+        <a href="pages/licence.html">
+          Licence
+        </a>
+      </nav>
+
+    </div>
+
+
+    <!-- Spodní oranžová stavová lišta. -->
+    <div class="statusbar">
+
+      <span>
+        Copyright © <span id="currentYear">2026</span>
+        &lt;bytkojn/&gt;
+      </span>
+
+      <span class="footer-signature">
+        //all_rights_reserved
+      </span>
+
+    </div>
+  </footer>
+
+  <!-- Pokud je JavaScript vypnutý, uživatel dostane tuto informaci. -->
+  <noscript>
+    <div class="noscript-message">Pro dynamické přepínání navigace je potřeba povolit JavaScript.</div>
+  </noscript>
+
+  <!-- Hlavní JavaScript soubor. Musí být načten až po HTML obsahu stránky. -->
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
