@@ -3,29 +3,39 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="BYTKOJN – český web o Bitcoinu a penězích se připravuje.">
-  <meta name="theme-color" content="#08090b">
 
-  <!-- Dočasně nechceme, aby rozpracovanou stránku indexovaly vyhledávače. -->
+  <meta
+    name="description"
+    content="BYTKOJN – český web o Bitcoinu a penězích se připravuje."
+  >
+  <meta name="theme-color" content="#08090b">
   <meta name="robots" content="noindex, nofollow">
 
-  <!-- Ponechává původní umístění favicony v projektu. -->
-  <link rel="icon" href="assets/media/favicon.svg" type="image/svg+xml">
+  <link
+    rel="icon"
+    href="assets/media/favicon.svg"
+    type="image/svg+xml"
+  >
 
-  <link rel="stylesheet" href="assets/css/styles.css">
+  <!--
+    Parametr ?v=4 vynutí načtení nové verze CSS,
+    místo staré kopie uložené v mezipaměti prohlížeče.
+  -->
+  <link rel="stylesheet" href="assets/css/styles.css?v=4">
 
   <title>BYTKOJN | Web se připravuje</title>
 </head>
+
 <body>
-  <!-- Jemná technická mřížka převzatá z vizuálního stylu projektu. -->
   <div class="background-grid" aria-hidden="true"></div>
 
   <main class="coming-soon-shell">
     <section class="coming-soon-panel" aria-labelledby="pageTitle">
 
-      <!-- Horní terminálová lišta zůstává jako jediný navigační motiv. -->
       <div class="terminal-bar">
-        <div class="terminal-path">~/bytkojn/home/overview</div>
+        <div class="terminal-path">
+          ~/bytkojn/home/overview
+        </div>
 
         <div class="terminal-meta" aria-label="Terminálový motiv">
           <span class="term-cmd">grep</span>
@@ -36,45 +46,74 @@
       </div>
 
       <div class="coming-soon-content">
-        <div class="hero-copy">
-          <p class="hero-kicker">OTEVŘENĚ O BITCOINU A PENĚZÍCH</p>
+        <div class="coming-soon-stage">
 
-          <h1 id="pageTitle" aria-label="Bitcoin bez technického strašení">
-            <span class="hero-title-fixed">Bitcoin bez</span>
+          <div class="hero-copy">
+            <p class="hero-kicker">
+              OTEVŘENĚ O BITCOINU A PENĚZÍCH
+            </p>
 
-            <span class="rotating-line">
-              <span
-                id="rotatingWord"
-                class="rotating-word"
-                aria-hidden="true"
-              >technického strašení</span>
-            </span>
-          </h1>
-        </div>
+            <h1
+              id="pageTitle"
+              aria-label="Bitcoin bez technického strašení"
+            >
+              <span class="hero-title-fixed">
+                Bitcoin bez
+              </span>
 
-        <!-- Dekorativní indikátor rozpracovaného webu. Jednotlivá kladívka vloží JavaScript. -->
-        <div class="construction-status" aria-label="Web se připravuje">
-          <div class="build-visual" aria-hidden="true">
-            <div class="hammer-assembly">
-              <div class="hammer">
-                <span class="hammer-head"></span>
-                <span class="hammer-handle"></span>
-              </div>
-            </div>
-        
-            <div class="bitcoin-block">
-              <div class="block-top-line">block #000839201</div>
-              <div class="block-center">₿</div>
-              <div class="block-bottom-line">00000000000000000004f2a</div>
-            </div>
-        
-            <span class="impact-mark impact-mark-left"></span>
-            <span class="impact-mark impact-mark-right"></span>
+              <span class="rotating-line">
+                <span
+                  id="rotatingWord"
+                  class="rotating-word"
+                  aria-hidden="true"
+                >technického strašení</span>
+              </span>
+            </h1>
           </div>
-        
-          <p class="construction-title">WEB SE PŘIPRAVUJE</p>
-          <p class="construction-subtitle">deploying &lt;bytkojn/&gt;</p>
+
+          <div
+            class="construction-status"
+            aria-label="Web se připravuje"
+          >
+            <div class="build-scene" aria-hidden="true">
+
+              <div class="hammer-assembly">
+                <div class="hammer">
+                  <span class="hammer-head"></span>
+                  <span class="hammer-handle"></span>
+                </div>
+              </div>
+
+              <div class="bitcoin-block">
+                <div class="block-top-line">
+                  BLOCK #839201
+                </div>
+
+                <div class="block-center">
+                  ₿
+                </div>
+
+                <div class="block-bottom-line">
+                  00000000000000000004f2a
+                </div>
+              </div>
+
+              <span class="impact-mark impact-mark-left"></span>
+              <span class="impact-mark impact-mark-center"></span>
+              <span class="impact-mark impact-mark-right"></span>
+            </div>
+
+            <p class="construction-title">
+              WEB SE PŘIPRAVUJE
+            </p>
+
+            <p class="construction-subtitle">
+              deploying &lt;bytkojn/&gt;
+            </p>
+          </div>
+
         </div>
+      </div>
 
     </section>
   </main>
@@ -85,6 +124,7 @@
     </div>
   </noscript>
 
-  <script src="assets/js/app.js"></script>
+  <!-- Stejný princip jako u CSS: ?v=4 obejde starou verzi v cache. -->
+  <script src="assets/js/app.js?v=4"></script>
 </body>
 </html>
